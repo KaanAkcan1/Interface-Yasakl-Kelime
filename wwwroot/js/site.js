@@ -21,7 +21,7 @@ var showWords = function (words) {
 var getWords = function () {
     $.getJSON("/show-string")
         .done(function (response) {
-            showWords(response);
+            showWords(response.value);
         });
 }
 
@@ -38,7 +38,7 @@ var saveWords = function () {
     //     });
     $.ajax({
         data: JSON.stringify(words),
-        dataType:"json",
+        dataType: "json",
         url: '/save-string',
         type: 'post',
         contentType: 'application/json',
@@ -64,7 +64,7 @@ var getLOG = function () {
             console.log(response);
             $('#word-log tbody').html('');
             for (var i = 0; i < response.length; i++) {
-                $('#word-log tbody').append('<tr><td>' + response[i].givingDate + '</td><td>' + response[i].ipAdress + '</td><td>' + response[i].url + '</td><td>' + response[i].word + '</td></tr>')
+                $('#word-log tbody').append('<tr><td>' + response.value[i].givingDate + '</td><td>' + response.value[i].ipAdress + '</td><td>' + response.value[i].url + '</td><td>' + response.value[i].word + '</td></tr>')
             }
         });
 };
